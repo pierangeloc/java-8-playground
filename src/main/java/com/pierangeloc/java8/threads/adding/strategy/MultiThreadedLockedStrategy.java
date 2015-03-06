@@ -1,7 +1,6 @@
 package com.pierangeloc.java8.threads.adding.strategy;
 
 import com.pierangeloc.java8.threads.adding.strategy.callables.IntHolder;
-import com.pierangeloc.java8.threads.adding.strategy.callables.IntIncrementer;
 import com.pierangeloc.java8.threads.adding.strategy.callables.LockingIntIncrementer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,6 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MultiThreadedLocked
 
     @Override
     public int increase(int times) throws InterruptedException {
-        long now = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(4);
 
@@ -28,6 +26,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MultiThreadedLocked
             incrementers.add(new LockingIntIncrementer(intHolder));
         }
 
+        long now = System.currentTimeMillis();
         executorService.invokeAll(incrementers);
 
         LOGGER.info("Shutdown and await termination");

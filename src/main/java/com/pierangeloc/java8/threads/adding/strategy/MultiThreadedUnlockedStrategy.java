@@ -17,7 +17,6 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MultiThreadedUnlock
 
     @Override
     public int increase(int times) throws InterruptedException {
-        long now = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(4);
 
@@ -27,6 +26,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(MultiThreadedUnlock
             incrementers.add(new IntIncrementer(intHolder));
         }
 
+        long now = System.currentTimeMillis();
         executorService.invokeAll(incrementers);
         LOGGER.info("Shutdown and await termination");
         executorService.shutdown();

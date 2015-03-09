@@ -28,8 +28,6 @@ public class Adder {
         LOGGER.info(String.format("Incrementing an integer %d times with single threaded loop and synchronized around each incrementation", MAX));
         context.add(MAX);
 
-
-
         context = new StrategyContext(new MultiThreadedUnlockedStrategy());
         LOGGER.info(String.format("Incrementing an integer %d times with 4 threads, without locking (leads to inconsistent result)", MAX));
         context.add(MAX);
@@ -42,6 +40,11 @@ public class Adder {
         context = new StrategyContext(new MultiThreadedAtomicStrategy());
         LOGGER.info(String.format("Incrementing an integer %d times with 4 threads, with atomic integer(should lead to correct result)", MAX));
         context.add(MAX);
+
+        context = new StrategyContext(new MultiThreadedVolatileStrategy());
+        LOGGER.info(String.format("Incrementing an integer %d times with 4 threads, with volatile integer(should lead to correct result)", MAX));
+        context.add(MAX);
+
 
         context = new StrategyContext(new MultiThreadedForkJoinStrategy());
         LOGGER.info(String.format("Incrementing an integer %d times with 4 threads, with Forkjoin(should lead to correct result)", MAX));

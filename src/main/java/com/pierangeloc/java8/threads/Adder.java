@@ -52,6 +52,6 @@ public class Adder {
 
     }
 
-    //TODO: forkjoin, and also akka streams with an underlying actor system with 4 threads
+    //TODO: akka streams with an underlying actor system with 4 threads
 
 }
